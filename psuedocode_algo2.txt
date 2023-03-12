@@ -1,0 +1,26 @@
+for n to n + 1
+  for position = 0 to rightmost_disk //EVEN 
+  
+    if disk[2*position] is out_of_bounds
+      break 
+
+    else if disk[2*position - 1] is black 
+      i+=2
+      switch disk[2*position] with disk[2*position-1]
+
+    else 
+      i+=2
+      do nothing
+
+  for position = 1 to rightmost_disk-1 //ODD 
+
+    if disk[2*position + 1] is out_of_bounds
+      break 
+
+    else if disk[2*position - 2] is black 
+      i+=2
+      switch disk[2*position +1] with disk[2*position -2]
+
+    else 
+      i+=2 
+      do nothing 
