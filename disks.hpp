@@ -114,6 +114,24 @@ public:
   // the left (low indices) and all dark disks on the right (high indices).
   bool is_sorted() const {
       
+      int halfway = total_count() / 2; 
+      for (int position = 0; position <= halfway; position++) {
+
+        if (get(position) == DISK_DARK) {
+          return false;
+
+        }
+
+      }
+      
+      for (int position = halfway; position < total_count(); position++) {
+        
+        if (get(position) == DISK_LIGHT) {
+          return false;
+
+        }
+
+      }
       return true;
   }
 };
