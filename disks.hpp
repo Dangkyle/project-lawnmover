@@ -115,18 +115,16 @@ public:
   bool is_sorted() const {
       
       int halfway = total_count() / 2; 
+      int right = total_count();
 
-      for (int position = 0; position < int(total_count()); position++) {
+      for (int position = 0; position <= right; position++) {
 
-        if (position <= halfway) {
-          
-          if (get(position) == DISK_DARK) {
-            return false;
+        if (position < halfway) {
+          if (_colors[position] ==  DISK_DARK) {
+              return false;
 
           }
-
         }
-
       }
       
       return true;
