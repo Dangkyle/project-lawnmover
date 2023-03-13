@@ -174,7 +174,7 @@ sorted_disks sort_alternate(const disk_state& before) {                         
       }
     }
 
-    else {
+    else if (n % 2 == 1) {
 
       for (int position = 1; position < int(state.total_count()) - 1; position += 2) {
 
