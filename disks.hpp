@@ -112,16 +112,17 @@ public:
   // Return true when this disk_state is fully sorted, with all light disks on
   // the left (low indices) and all dark disks on the right (high indices).
   bool is_sorted() const {
-      
-    for (int position = 0; position <= total_count(); position++) {
+    
+    int middle = total_count() / 2;
 
-      if (_colors[position] != DISK_LIGHT && position <= total_count() / 2) {
-        return false;
+    for (int position = 0; position < int(total_count()); position++) {
 
-      }
+      if (position < middle) {
 
-      if (_colors[position] != DISK_DARK && position > total_count()) {
-        return false;
+        if (_colors[position] == DISK_DARK) {
+          return false;
+
+        }
 
       }
 
@@ -160,11 +161,11 @@ sorted_disks sort_alternate(const disk_state& before) {
 	int numOfSwap = 0;                                                                      //record # of step swap
   disk_state state = before; 
 
-  for (int n = 0; n < state.light_count() + 1; n++) {
+  for (size_t n = 0; n < state.light_count() + 1; n++) {
 
-    for (int position = 0; position <= state.light_count(); position += 2) {
+    for (size_t position = 0; position <= state.light_count() - 1; position += 2) {
 
-      if (state.get(position*2) > state.light_count()) {
+      if (state.get(position*2) >= state.light_count()) {
         break;
 
       }
@@ -180,7 +181,7 @@ sorted_disks sort_alternate(const disk_state& before) {
 
     }
 
-    for  (int position =  1; position <=  state.light_count()-1; position += 2) {
+    for  (size_t position =  1; position <=  state.light_count()-1; position += 2) {
 
       if ((position*2) + 1 > state.light_count()) {
         break;
@@ -212,13 +213,13 @@ sorted_disks sort_lawnmower(const disk_state& before) {
   	
 	disk_state state = before;
   int numOfSwap = 0; 
-  const int rightmost_disk = state.light_count()*2 - 1; 
+  const size_t rightmost_disk = state.light_count()*2 - 1; 
 
-  for (int n = 0; n < state.light_count() / 2; n++) {
+  for (size_t n = 0; n < state.light_count() / 2; n++) {
 
-    for (int position = 0; position <= rightmost_disk; position += 2 ) {
+    for (size_t position = 0; position <= rightmost_disk; position += 2 ) {
 
-      if (position >= state.light_count()) {
+      if (position >= state.total_count()) {
         break;
 
       }
@@ -241,9 +242,9 @@ sorted_disks sort_lawnmower(const disk_state& before) {
 
     }
 
-    for (int position = rightmost_disk; position >= 0; position -= 2) {
+    for (size_t position = rightmost_disk; position >= 0; position -= 2) {
 
-      if (position < state.light_count()) {
+      if (position < 0) {
         break; 
 
       }
