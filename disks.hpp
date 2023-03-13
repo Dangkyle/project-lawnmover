@@ -60,7 +60,7 @@ public:
   }
 
   disk_color get(size_t index) const {
-    std::cout << "get(): index = " << index << std::endl; 
+    //std::cout << "get(): index = " << index << std::endl; 
     assert(is_index(index));
     return _colors[index];
   }
@@ -115,23 +115,20 @@ public:
   bool is_sorted() const {
       
       int halfway = total_count() / 2; 
-      for (int position = 0; position <= halfway; position++) {
 
-        if (get(position) == DISK_DARK) {
-          return false;
+      for (int position = 0; position < int(total_count()); position++) {
+
+        if (position <= halfway) {
+          
+          if (get(position) == DISK_DARK) {
+            return false;
+
+          }
 
         }
 
       }
       
-      for (int position = halfway; position < total_count(); position++) {
-        
-        if (get(position) == DISK_LIGHT) {
-          return false;
-
-        }
-
-      }
       return true;
   }
 };
