@@ -60,6 +60,7 @@ public:
   }
 
   disk_color get(size_t index) const {
+    std::cout << "get(): index = " << index << std::endl; 
     assert(is_index(index));
     return _colors[index];
   }
