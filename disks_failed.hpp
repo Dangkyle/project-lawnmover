@@ -142,10 +142,11 @@ public:
   }
 };
 
+
 // Algorithm that sorts disks using the alternate algorithm.
 sorted_disks sort_alternate(const disk_state& before) {
 	int numOfSwap = 0;                                                                      //record # of step swap
-  disk_state state = before; 
+ 
           
 
   return sorted_disks(disk_state(state), numOfSwap);
@@ -153,10 +154,9 @@ sorted_disks sort_alternate(const disk_state& before) {
 
 
 // Algorithm that sorts disks using the lawnmower algorithm.
-sorted_disks sort_lawnmower(const disk_state& before) {
-  int numOfSwap = 0; 
-  disk_state state = before; 
+//sorted_disks sort_lawnmower(const disk_state& before) {
+  	
 	  
 
-  return sorted_disks(disk_state(state), numOfSwap);
+  return sorted_disks(disk_state(state), numOfSwap); r
 }
