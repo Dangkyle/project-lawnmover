@@ -114,12 +114,12 @@ public:
   // the left (low indices) and all dark disks on the right (high indices).
   bool is_sorted() const {
       
-      int halfway = total_count() / 2; 
-      int right = total_count();
+      int halfway_disk = total_count() / 2; 
+      int rightmost_disk = total_count();
 
-      for (int position = 0; position <= right; position++) {
+      for (int position = 0; position <= rightmost_disk; position++) {
 
-        if (position < halfway) {
+        if (position < halfway_disk) {
           if (_colors[position] ==  DISK_DARK) {
               return false;
 
@@ -159,12 +159,13 @@ public:
 sorted_disks sort_alternate(const disk_state& before) {                                                                    //record # of step swap
   disk_state state = before; 
   int numOfSwap = 0;  
-  int state_total = state.light_count() + 1;
+  int light_total = state.light_count() + 1;
+  int rightmost_disk = state.total_count();
 
-  for (int n = 0; n < state_total; n++) {
+  for (int n = 0; n < light_total; n++) {
     if (n % 2 == 0) {
 
-      for (int position = 0; position < int(state.total_count()); position += 2) {
+      for (int position = 0; position < rightmost_disk; position += 2) {
 
         if (state.get(position) > state.get(position + 1)) {
           state.swap(position);
@@ -176,7 +177,7 @@ sorted_disks sort_alternate(const disk_state& before) {                         
 
     else if (n % 2 == 1) {
 
-      for (int position = 1; position < int(state.total_count()) - 1; position += 2) {
+      for (int position = 1; position < rightmost_disk - 1; position += 2) {
 
         if (state.get(position) > state.get (position + 1)) {
           state.swap(position);
@@ -195,9 +196,11 @@ sorted_disks sort_lawnmower(const disk_state& before) {
   int numOfSwap = 0; 
   disk_state state = before; 
 	int light_total = state.light_count();
+  int rightmost_disk = state.total_count();
+
   for (int n = 0; n < light_total; ++n) {
 
-    for (int position = 0; position < int(state.total_count() - 1); ++position) {
+    for (int position = 0; position < rightmost_disk - 1; ++position) {
     
       if (state.get(position) > state.get (position + 1)) {
         state.swap(position);
@@ -205,7 +208,7 @@ sorted_disks sort_lawnmower(const disk_state& before) {
       }
     }
 
-    for (int position = int(state.total_count()) - 2; position > 0; --position) {
+    for (int position = rightmost_disk - 2; position > 0; --position) {
 
       if (state.get(position) > state.get(position +1)) {
         state.swap(position);
