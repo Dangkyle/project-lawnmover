@@ -1,3 +1,4 @@
+//BEFORE APPLICATION 
 for n to n + 1
   for position = 0 to rightmost_disk //EVEN 
   
@@ -24,3 +25,30 @@ for n to n + 1
     else 
       i+=2 
       do nothing 
+
+//AFTER APPLICATION 
+for n to n + 1
+
+  check if even or odd 
+
+    if even 
+
+      for position at 0 to rightmost_disk
+
+        if value of left_disk > value of right_disk
+          swap position of disks
+          add to numOfSwap  
+          position += 2
+    
+    else odd
+      
+      for position at 1 to rightmost disk - 1
+        
+        if value of left_disk > value of right_disk
+          swap position of disks 
+          add to numOfSwap
+          position += 2  
+  
+  return sorted
+
+    

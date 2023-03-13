@@ -1,8 +1,4 @@
-function swap 
-  temp = disk_left 
-  disk_left = disk_right 
-  disk_right = temp 
-
+//BEFORE APPLICATION
 for n at 0 to n / 2
   for position = 0 to rightmost_disk
     
@@ -34,3 +30,19 @@ for n at 0 to n / 2
     else 
       swap right_disk with left_disk 
       position-=2
+
+//AFTER APPLICATION 
+for n to n / 2
+  for position at 0 to rightmost_disk - 1
+    if value of left_disk > value of right_disk 
+      swap the disks 
+      add to numOfSwap
+      position++
+
+  for position at rightmost_disk - 2
+    if value of left_disk > value of right_disk 
+      swap the disks 
+      add to numOfSwap
+      position--
+
+  return sorted 
